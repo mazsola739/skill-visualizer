@@ -1,18 +1,22 @@
-# Rika's Skill-visualizer
+# Rika's skill-visualizer
 
 My very first React app, from June 2021: it turns a JSON list of skills into a mind map, every skill rated from
 0 to 8 stars. Renovated in 2026 with Vite, React 19, tests and a new UI.
 
-**Live site:** https://mazsola739.github.io/Skill-visualizer/
+I've always liked visual overviews – they make things much easier to take in. So I wondered: what if my knowledge
+could be seen too, like a tree and its branches? Before a job interview I was asked to put together a small hobby
+project of my own, and this is what came of it :)
 
-![Skill-visualizer: the JSON editor on the left, Rika's HTML skill map from 2021 on the right](docs/screenshot.webp)
+**Live site:** https://mazsola739.github.io/skill-visualizer/
+
+![skill-visualizer: the JSON editor on the left, Rika's HTML skill map from 2021 on the right](docs/screenshot.webp)
 
 - Paste your skills as JSON, load an example or open a `.json` file – the editor checks it as you type.
 - Every map can be viewed as a **mind map** image, an ASCII **tree**, the generated **PlantUML** source or the
   **JSON** itself, and copied or opened as SVG / PNG.
 - Branches are split evenly to both sides of the map; deeper levels get lighter colors.
 - The page opens with my own skill maps from 2021 – a snapshot of what I knew when I built the app.
-- Light and dark theme follow the system, and the layout works on phones too.
+- Every link opens in a new tab, and the layout works on phones too.
 
 Part of my portfolio: https://mazsola739.github.io/mazsola739/
 

@@ -78,7 +78,7 @@ describe('toPlantUml', () => {
   it('wraps the diagram in mindmap markers with title and legend', () => {
     const uml = lines({ Root: { A: 1 } })
     expect(uml[0]).toBe('@startmindmap')
-    expect(uml).toContain("title Rika's Skill-visualizer")
+    expect(uml).toContain("title Rika's skill-visualizer")
     expect(uml).toContain('  Rika©')
     expect(uml.at(-1)).toBe('@endmindmap')
   })
