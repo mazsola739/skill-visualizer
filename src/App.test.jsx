@@ -5,9 +5,9 @@ import App from './App'
 describe('App', () => {
   beforeEach(() => localStorage.clear())
 
-  it("shows Rika's skill maps on load", () => {
+  it("shows Rika's 2021 skill maps on load", () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: "Rika's skills" })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: "Rika's skills in 2021" })).toBeInTheDocument()
     expect(screen.getAllByRole('article')).toHaveLength(4)
     expect(screen.getByText(/Looks good/)).toBeInTheDocument()
   })

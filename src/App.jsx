@@ -7,6 +7,7 @@ import { getStats } from './lib/skillMap'
 
 const DRAFT_KEY = 'skill-visualizer:draft'
 const REPO_URL = 'https://github.com/mazsola739/Skill-visualizer'
+const PORTFOLIO_URL = 'https://mazsola739.github.io/mazsola739/'
 
 // localStorage can be unavailable (private mode, blocked storage) – the app works without it.
 const loadDraft = () => {
@@ -87,10 +88,12 @@ const App = () => {
         <section className="results" ref={resultsRef} aria-labelledby="results-title">
           <div className="results-head">
             <div>
-              <h2 id="results-title">{isRika ? "Rika's skills" : `Your ${view.maps.length > 1 ? 'mind maps' : 'mind map'}`}</h2>
+              <h2 id="results-title">
+                {isRika ? "Rika's skills in 2021" : `Your ${view.maps.length > 1 ? 'mind maps' : 'mind map'}`}
+              </h2>
               <p className="muted">
                 {isRika
-                  ? 'These are my own skill maps. Paste your JSON into the editor to draw yours.'
+                  ? 'A snapshot from June 2021, when I built this app as my first React project. Paste your JSON into the editor to draw yours.'
                   : 'Edit the JSON and press Visualize again to update.'}
               </p>
             </div>
@@ -101,7 +104,7 @@ const App = () => {
               </label>
               {!isRika && (
                 <button type="button" className="button button-small" onClick={() => setView({ owner: 'rika', maps: rikaSkills })}>
-                  Show Rika's skills
+                  Show Rika's 2021 skills
                 </button>
               )}
             </div>
@@ -114,10 +117,11 @@ const App = () => {
       </main>
 
       <footer className="site-footer">
-        My very first React project, refreshed · Rika© · Diagrams by{' '}
+        My very first React project, made in 2021 · refreshed in 2026 · Diagrams by{' '}
         <a href="https://plantuml.com" target="_blank" rel="noreferrer">
           PlantUML
-        </a>
+        </a>{' '}
+        · <a href={PORTFOLIO_URL}>mazsola739 portfolio</a>
       </footer>
     </div>
   )
