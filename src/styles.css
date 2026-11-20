@@ -1,5 +1,6 @@
 :root {
-  color-scheme: light dark;
+  /* Light only: "only" also stops browsers from repainting the page with their own dark mode. */
+  color-scheme: only light;
 
   --brand: #00abf5;
   --star: #b22746;
@@ -23,26 +24,6 @@
   --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 6px 20px rgb(16 24 40 / 0.06);
   --mono: ui-monospace, 'Cascadia Code', 'Fira Code', Consolas, Menlo, monospace;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --star: #ff7a96;
-    --bg: #101316;
-    --surface: #191d21;
-    --surface-2: #22282e;
-    --text: #e6e8eb;
-    --muted: #a3aab2;
-    --border: #2d343b;
-    --link: #5cc8ff;
-    --primary-bg: #4cc2fb;
-    --primary-fg: #04263a;
-    --ok: #6fd39b;
-    --error: #ff8f86;
-    --error-bg: #3a1e1c;
-    --paper: #f7f9fa;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 6px 20px rgb(0 0 0 / 0.25);
-  }
 }
 
 *,
@@ -389,6 +370,12 @@ select.button {
 
 .results-head p {
   margin: 4px 0 0;
+  max-width: 72ch;
+}
+
+.results-head .story {
+  margin-top: 8px;
+  color: var(--text);
 }
 
 .results-tools {

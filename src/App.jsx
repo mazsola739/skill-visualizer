@@ -6,7 +6,7 @@ import { parseSkillJson } from './lib/parseInput'
 import { getStats } from './lib/skillMap'
 
 const DRAFT_KEY = 'skill-visualizer:draft'
-const REPO_URL = 'https://github.com/mazsola739/Skill-visualizer'
+const REPO_URL = 'https://github.com/mazsola739/skill-visualizer'
 const PORTFOLIO_URL = 'https://mazsola739.github.io/mazsola739/'
 
 // localStorage can be unavailable (private mode, blocked storage) – the app works without it.
@@ -66,7 +66,7 @@ const App = () => {
         <div className="brand">
           <img src="./favicon.svg" alt="" width="40" height="40" />
           <div>
-            <h1>Rika's Skill-visualizer</h1>
+            <h1>Rika's skill-visualizer</h1>
             <p>Turn a JSON list of skills into a mind map – every skill rated from 0 to 8 stars.</p>
           </div>
         </div>
@@ -91,11 +91,21 @@ const App = () => {
               <h2 id="results-title">
                 {isRika ? "Rika's skills in 2021" : `Your ${view.maps.length > 1 ? 'mind maps' : 'mind map'}`}
               </h2>
-              <p className="muted">
-                {isRika
-                  ? 'A snapshot from June 2021, when I built this app as my first React project. Paste your JSON into the editor to draw yours.'
-                  : 'Edit the JSON and press Visualize again to update.'}
-              </p>
+              {isRika ? (
+                <>
+                  <p className="muted story">
+                    I've always liked visual overviews – they make things much easier to take in. So I wondered: what
+                    if my knowledge could be seen too, like a tree and its branches? Before a job interview I was asked
+                    to put together a small hobby project of my own, and this is what came of it :)
+                  </p>
+                  <p className="muted">
+                    These maps show my skills in June 2021, when I built this app as my first React project. Paste your
+                    JSON into the editor to draw yours.
+                  </p>
+                </>
+              ) : (
+                <p className="muted">Edit the JSON and press Visualize again to update.</p>
+              )}
             </div>
             <div className="results-tools">
               <label className="toggle">
@@ -121,7 +131,10 @@ const App = () => {
         <a href="https://plantuml.com" target="_blank" rel="noreferrer">
           PlantUML
         </a>{' '}
-        · <a href={PORTFOLIO_URL}>mazsola739 portfolio</a>
+        ·{' '}
+        <a href={PORTFOLIO_URL} target="_blank" rel="noreferrer">
+          mazsola739 portfolio
+        </a>
       </footer>
     </div>
   )

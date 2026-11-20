@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Turn a JSON skill list into a PlantUML mind map with star ratings.",
-  "homepage": "https://mazsola739.github.io/Skill-visualizer/",
+  "homepage": "https://mazsola739.github.io/skill-visualizer/",
   "scripts": {
     "dev": "vite",
     "start": "vite",

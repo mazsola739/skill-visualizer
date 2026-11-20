@@ -1,6 +1,6 @@
 {
-  "short_name": "Skill-visualizer",
-  "name": "Rika's Skill-visualizer",
+  "short_name": "skill-visualizer",
+  "name": "Rika's skill-visualizer",
   "icons": [
     {
       "src": "favicon.svg",

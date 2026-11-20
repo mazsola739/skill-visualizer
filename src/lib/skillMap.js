@@ -136,7 +136,7 @@ const balancedSplit = (children) => {
  * @param {object} data skill JSON
  * @param {{ title?: string, footer?: string, balanced?: boolean, theme?: string }} options
  */
-export const toPlantUml = (data, { title = "Rika's Skill-visualizer", footer = 'Rika©', balanced = true, theme = 'spacelab' } = {}) => {
+export const toPlantUml = (data, { title = "Rika's skill-visualizer", footer = 'Rika©', balanced = true, theme = 'spacelab' } = {}) => {
   const roots = toTree(data)
   // +1 because ratings/notes are drawn one level below their skill.
   const maxDepth = depthOf(roots) + 1
