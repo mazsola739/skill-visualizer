@@ -71,7 +71,7 @@ const App = () => {
           </div>
         </div>
         <a className="button button-small" href={REPO_URL} target="_blank" rel="noreferrer">
-          Source on GitHub ↗
+          Source on GitHub
         </a>
       </header>
 
@@ -133,7 +133,7 @@ const App = () => {
         </a>{' '}
         ·{' '}
         <a href={PORTFOLIO_URL} target="_blank" rel="noreferrer">
-          mazsola739 portfolio
+          mazsola739
         </a>
       </footer>
     </div>

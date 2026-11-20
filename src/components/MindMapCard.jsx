@@ -54,13 +54,13 @@ export const MindMapCard = ({ data, balanced }) => {
           <Diagram key={urls.svg} src={urls.svg} alt={`Mind map: ${title}`} />
           <div className="card-actions">
             <a className="button button-small" href={urls.svg} target="_blank" rel="noreferrer">
-              Open SVG ↗
+              Open SVG
             </a>
             <a className="button button-small" href={urls.png} target="_blank" rel="noreferrer">
-              Open PNG ↗
+              Open PNG
             </a>
             <a className="button button-small" href={urls.editor} target="_blank" rel="noreferrer">
-              Edit on plantuml.com ↗
+              Edit on plantuml.com
             </a>
           </div>
         </>
