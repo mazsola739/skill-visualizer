@@ -90,3 +90,7 @@ src/
 Every push to `master` is tested, built and published to GitHub Pages by `.github/workflows/deploy.yml`.
 One-time setup in the repository: **Settings → Pages → Source: GitHub Actions**. On the free plan GitHub Pages
 only works for public repositories, so the deploy step is skipped while the repository is private.
+
+## License
+
+[MIT](LICENSE)
