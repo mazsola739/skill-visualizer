@@ -48,7 +48,7 @@ const App = () => {
   const visualize = () => {
     if (parsed.error) return
     setView({ owner: 'user', maps: parsed.maps })
-    // On narrow screens the results are below the editor – bring them into view.
+    // On narrow screens the results are above the editor – bring them into view.
     if (window.matchMedia?.('(max-width: 1099px)').matches) {
       requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
     }

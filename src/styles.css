@@ -115,6 +115,13 @@ kbd {
   gap: 24px;
 }
 
+/* One column: the story and the maps first, the editor to draw your own under them. */
+@media (max-width: 1099px) {
+  .results {
+    order: -1;
+  }
+}
+
 @media (min-width: 1100px) {
   .page {
     padding: 32px 32px 40px;
