@@ -1,0 +1,21 @@
+{
+  "Rika's back end skills in 2026": {
+    "Node.js": {
+      "Node.js": 4,
+      "Express": 4,
+      "Bun": 3,
+      "npm packages": 5
+    },
+    "APIs": {
+      "REST APIs": 5,
+      "WebSocket": 4
+    },
+    "Data": {
+      "DynamoDB": 3
+    },
+    "Rust": {
+      "Rust": 2,
+      "Axum": 2
+    }
+  }
+}

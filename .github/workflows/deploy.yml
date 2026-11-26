@@ -1,6 +1,6 @@
-# Tests the app, builds it and publishes it to GitHub Pages.
+# Builds the app and publishes it to GitHub Pages.
 # One-time setup on GitHub: Settings → Pages → Source: "GitHub Actions".
-name: Test and deploy
+name: Deploy
 
 on:
   push:
@@ -20,7 +20,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v4
         with:

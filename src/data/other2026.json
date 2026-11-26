@@ -1,0 +1,22 @@
+{
+  "Rika's other skills in 2026": {
+    "AI-assisted development": {
+      "Claude": 6,
+      "GitHub Copilot": 6,
+      "ChatGPT": 6
+    },
+    "Tools": {
+      "Git": 6,
+      "GitHub Actions": 4,
+      "Docker": 2
+    },
+    "Ways of working": {
+      "Scrum": 6,
+      "Code review": 6,
+      "Pair programming": 6,
+      "Mentoring": 6,
+      "Jira": 6,
+      "Azure DevOps": 5
+    }
+  }
+}

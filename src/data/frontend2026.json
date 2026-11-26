@@ -1,0 +1,48 @@
+{
+  "Rika's front end skills in 2026": {
+    "Languages": {
+      "HTML": 8,
+      "JavaScript": 7,
+      "TypeScript": 6
+    },
+    "Styling": {
+      "CSS": 7,
+      "SCSS": 6,
+      "Tailwind CSS": 6,
+      "CSS Modules": 5,
+      "Emotion": 4,
+      "Bootstrap": 4
+    },
+    "React": {
+      "React": 6,
+      "React Router": 5,
+      "Redux Toolkit": 5,
+      "RTK Query": 4,
+      "MobX": 5,
+      "React Query": 4,
+      "Formik": 3,
+      "Next.js": 3
+    },
+    "Angular": {
+      "Angular": 2,
+      "RxJS": 2,
+      "NgRx": 2
+    },
+    "Browser APIs": {
+      "SVG": 5,
+      "Canvas": 4,
+      "Web Audio": 3,
+      "IndexedDB": 3,
+      "Web Workers": 3
+    },
+    "Testing": {
+      "Jest": 3,
+      "Vitest": 3,
+      "Testing Library": 3,
+      "Playwright": 3
+    },
+    "Tools": {
+      "Vite": 5
+    }
+  }
+}

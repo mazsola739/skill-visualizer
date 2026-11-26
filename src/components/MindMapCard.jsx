@@ -4,15 +4,16 @@ import { plantUmlUrls } from '../lib/plantuml'
 import { CopyButton } from './CopyButton'
 import { Diagram } from './Diagram'
 
-const TABS = [
+const VIEWS = [
   { id: 'map', label: 'Mind map' },
   { id: 'tree', label: 'Tree' },
   { id: 'plantuml', label: 'PlantUML' },
   { id: 'json', label: 'JSON' },
 ]
 
-export const MindMapCard = ({ data, balanced }) => {
-  const [tab, setTab] = useState('map')
+/** One mind map that fills the space it gets: a toolbar on top, the map (or its text) under it. */
+export const MindMapCard = ({ data, balanced, onBalancedChange, children }) => {
+  const [view, setView] = useState('map')
 
   const { title, stats, uml, urls, tree, json } = useMemo(() => {
     const uml = toPlantUml(data, { balanced })
@@ -26,13 +27,13 @@ export const MindMapCard = ({ data, balanced }) => {
     }
   }, [data, balanced])
 
-  const text = { tree, plantuml: uml, json }[tab]
+  const text = { tree, plantuml: uml, json }[view]
 
   return (
     <article className="card">
       <header className="card-head">
-        <div>
-          <h3 className="card-title">{title}</h3>
+        <div className="card-heading">
+          <h2 className="card-title">{title}</h2>
           {stats.skills > 0 && (
             <p className="card-meta">
               {stats.skills} rated {stats.skills === 1 ? 'skill' : 'skills'} · average{' '}
@@ -40,40 +41,44 @@ export const MindMapCard = ({ data, balanced }) => {
             </p>
           )}
         </div>
+        {children}
         <div className="segmented" role="group" aria-label="View">
-          {TABS.map(({ id, label }) => (
-            <button key={id} type="button" aria-pressed={tab === id} onClick={() => setTab(id)}>
+          {VIEWS.map(({ id, label }) => (
+            <button key={id} type="button" aria-pressed={view === id} onClick={() => setView(id)}>
               {label}
             </button>
           ))}
         </div>
       </header>
 
-      {tab === 'map' ? (
-        <>
-          <Diagram key={urls.svg} src={urls.svg} alt={`Mind map: ${title}`} />
-          <div className="card-actions">
-            <a className="button button-small" href={urls.svg} target="_blank" rel="noreferrer">
-              Open SVG
-            </a>
-            <a className="button button-small" href={urls.png} target="_blank" rel="noreferrer">
-              Open PNG
-            </a>
-            <a className="button button-small" href={urls.editor} target="_blank" rel="noreferrer">
-              Edit on plantuml.com
-            </a>
-          </div>
-        </>
+      {view === 'map' ? (
+        <Diagram key={urls.svg} src={urls.svg} alt={`Mind map: ${title}`} />
       ) : (
-        <>
-          <pre className="code" tabIndex={0}>
-            {text}
-          </pre>
-          <div className="card-actions">
-            <CopyButton text={text} />
-          </div>
-        </>
+        <pre className="code card-code" tabIndex={0}>
+          {text}
+        </pre>
       )}
+
+      <footer className="card-actions">
+        {view === 'map' ? (
+          <>
+            <label className="toggle">
+              <input type="checkbox" checked={balanced} onChange={(event) => onBalancedChange(event.target.checked)} />
+              Branches on both sides
+            </label>
+            <span className="card-links">
+              <a className="button button-small" href={urls.svg} target="_blank" rel="noreferrer">
+                Open SVG
+              </a>
+              <a className="button button-small" href={urls.png} target="_blank" rel="noreferrer">
+                Open PNG
+              </a>
+            </span>
+          </>
+        ) : (
+          <CopyButton text={text} />
+        )}
+      </footer>
     </article>
   )
 }

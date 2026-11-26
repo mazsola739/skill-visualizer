@@ -14,14 +14,14 @@ const isGroup = (value) => value !== null && typeof value === 'object'
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
 
 /** Numbers and numeric strings become a 0–MAX_RATING integer, anything else is null. */
-export const toRating = (value) => {
+const toRating = (value) => {
   if (typeof value === 'string' && value.trim() === '') return null
   if (typeof value !== 'number' && typeof value !== 'string') return null
   const number = Number(value)
   return Number.isFinite(number) ? clamp(Math.round(number), 0, MAX_RATING) : null
 }
 
-export const stars = (rating) => '★'.repeat(rating) + '☆'.repeat(MAX_RATING - rating)
+const stars = (rating) => '★'.repeat(rating) + '☆'.repeat(MAX_RATING - rating)
 
 const cleanLabel = (key) => String(key).replace(/\s+/g, ' ').trim() || '(unnamed)'
 
@@ -97,7 +97,7 @@ const rgbToHex = (rgb) =>
   '#' + rgb.map((c) => clamp(Math.round(c), 0, 255).toString(16).padStart(2, '0')).join('')
 
 /** Mixes `hex` with white. amount 0 = original colour, 1 = white. */
-export const lighten = (hex, amount) => rgbToHex(hexToRgb(hex).map((c) => c + (255 - c) * amount))
+const lighten = (hex, amount) => rgbToHex(hexToRgb(hex).map((c) => c + (255 - c) * amount))
 
 // Root stays close to the base colour, the deepest level ends up very light.
 const colorForDepth = (depth, maxDepth) => {
@@ -107,7 +107,7 @@ const colorForDepth = (depth, maxDepth) => {
 
 // PlantUML uses Creole markup (**bold**, //italic//, <tags>, [[links]] ...).
 // "~" is its escape character, so we neutralise anything that could be read as markup.
-export const escapeCreole = (text) => text.replace(/([*/"\-_^=])\1/g, '~$1$1').replace(/([<[])/g, '~$1')
+const escapeCreole = (text) => text.replace(/([*/"\-_^=])\1/g, '~$1$1').replace(/([<[])/g, '~$1')
 
 const umlLines = (node, depth, maxDepth) => {
   const stem = '*'.repeat(depth)

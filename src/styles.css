@@ -72,12 +72,22 @@ kbd {
   color: var(--muted);
 }
 
-/* ---------- page layout ---------- */
+/* ---------- page layout: everything fits on one screen ---------- */
 
-.page {
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100dvh;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 24px 16px 32px;
+  padding: 16px 16px 10px;
 }
 
 .site-header {
@@ -85,14 +95,14 @@ kbd {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 12px 24px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .brand img {
@@ -101,53 +111,183 @@ kbd {
 }
 
 .brand h1 {
-  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
+  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
   letter-spacing: -0.01em;
 }
 
 .brand p {
-  margin: 2px 0 0;
+  margin: 0;
   color: var(--muted);
+  font-size: 0.875rem;
 }
 
-.layout {
-  display: grid;
-  gap: 24px;
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-/* One column: the story and the maps first, the editor to draw your own under them. */
-@media (max-width: 1099px) {
-  .results {
-    order: -1;
-  }
+.tabs button {
+  flex: none;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-@media (min-width: 1100px) {
-  .page {
-    padding: 32px 32px 40px;
+.tabs button:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.tabs button[aria-pressed='true'] {
+  background: var(--primary-bg);
+  color: var(--primary-fg);
+}
+
+/* The year in front of each group of maps. */
+.tabs-group {
+  flex: none;
+  align-self: center;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* The stage takes the space between header and footer; its content scrolls inside, not the page. */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage > * {
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 759px) {
+  .app {
+    padding: 12px 12px 8px;
+    gap: 10px;
   }
 
-  .layout {
-    grid-template-columns: minmax(360px, 420px) minmax(0, 1fr);
-    align-items: start;
+  .brand p {
+    display: none;
   }
 
-  .editor {
-    position: sticky;
-    top: 24px;
-  }
-
-  .editor .editor-input {
-    height: calc(100vh - 360px);
-    min-height: 280px;
+  .tabs {
+    width: 100%;
   }
 }
 
 .site-footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 0.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 18px;
+  font-size: 0.8rem;
   color: var(--muted);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer .joke {
+  font-style: italic;
+}
+
+/* The Contact me button in the footer looks like the links next to it. */
+button.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- about ---------- */
+
+.about {
+  align-self: center;
+  flex: 0 1 auto !important;
+  max-width: 68ch;
+  margin: auto;
+  overflow: auto;
+}
+
+.about h2 {
+  font-size: 1.35rem;
+}
+
+.about p {
+  margin: 12px 0 0;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ---------- draw yours ---------- */
+
+.yours {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.yours-switch {
+  display: none !important;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 899px) {
+  .yours {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .yours-switch {
+    display: inline-flex !important;
+    justify-self: start;
+  }
+
+  .yours[data-pane='editor'] > :not(.editor, .yours-switch),
+  .yours[data-pane='map'] > .editor {
+    display: none;
+  }
 }
 
 /* ---------- panels & cards ---------- */
@@ -251,6 +391,8 @@ select.button {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-height: 0;
+  overflow: auto;
 }
 
 .editor-head {
@@ -275,14 +417,15 @@ select.button {
 }
 
 .editor-input {
+  flex: 1;
   width: 100%;
-  height: 360px;
+  min-height: 160px;
   padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius-small);
   background: var(--surface-2);
   color: var(--text);
-  resize: vertical;
+  resize: none;
   white-space: pre;
 }
 
@@ -353,50 +496,13 @@ select.button {
   overflow-wrap: anywhere;
 }
 
-/* ---------- results ---------- */
-
-.results {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 0;
-  scroll-margin-top: 16px;
-}
-
-.results-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px 20px;
-}
-
-.results-head h2 {
-  font-size: 1.35rem;
-}
-
-.results-head p {
-  margin: 4px 0 0;
-  max-width: 72ch;
-}
-
-.results-head .story {
-  margin-top: 8px;
-  color: var(--text);
-}
-
-.results-tools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-}
+/* ---------- mind map card ---------- */
 
 .toggle {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   cursor: pointer;
 }
 
@@ -409,17 +515,22 @@ select.button {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 18px;
+  gap: 12px;
+  padding: 14px 16px;
   min-width: 0;
+  min-height: 0;
 }
 
 .card-head {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.card-heading {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .card-title {
@@ -427,9 +538,13 @@ select.button {
 }
 
 .card-meta {
-  margin: 4px 0 0;
-  font-size: 0.875rem;
+  margin: 2px 0 0;
+  font-size: 0.85rem;
   color: var(--muted);
+}
+
+.map-picker {
+  width: auto;
 }
 
 .star {
@@ -466,34 +581,103 @@ select.button {
 .card-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
+/* The map is scaled to fit the space left in the card; a click opens it full size. */
 .diagram {
-  display: grid;
-  place-items: center;
-  min-height: 220px;
+  position: relative;
+  flex: 1;
+  min-height: 160px;
   margin: 0;
-  padding: 12px;
   border-radius: var(--radius-small);
   background: var(--paper);
+}
+
+.diagram-box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding: 8px;
+  overflow: hidden;
+}
+
+/* Fitted: the whole map in the box. */
+.diagram-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Zoomed: the map keeps its size, the box scrolls and can be dragged. margin: auto centres a small map. */
+.diagram[data-zoomed='true'] .diagram-box {
   overflow: auto;
+  cursor: grab;
+  touch-action: none;
 }
 
-.diagram a {
-  display: block;
-  cursor: zoom-in;
+.diagram[data-zoomed='true'] .diagram-box:active {
+  cursor: grabbing;
 }
 
-.diagram img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.diagram[data-zoomed='true'] .diagram-box img {
+  flex: none;
+  max-width: none;
+  margin: auto;
+}
+
+.zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+}
+
+.zoom button {
+  min-width: 34px;
+  min-height: 32px;
+  padding: 2px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.zoom button:hover {
+  background: var(--surface-2);
+}
+
+.zoom button[aria-pressed='true'] {
+  background: var(--surface-2);
+  color: var(--link);
 }
 
 .diagram-message {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 16px;
   color: #5d6268;
@@ -525,12 +709,110 @@ select.button {
   }
 }
 
-.card .code {
+.card-code {
+  flex: 1;
+  min-height: 0;
   margin: 0;
-  max-height: 520px;
   padding: 14px 16px;
   border-radius: var(--radius-small);
   background: var(--surface-2);
   overflow: auto;
   white-space: pre;
+}
+
+/* ---------- contact me window ---------- */
+
+.contact {
+  width: calc(100% - 32px);
+  max-width: 480px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.contact::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+
+.contact-window {
+  position: relative;
+  padding: 20px 24px 22px;
+}
+
+.contact-window h2 {
+  font-size: 1.3rem;
+}
+
+.contact-window > p {
+  margin: 6px 0 0;
+}
+
+.contact-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .button-primary {
+  align-self: flex-start;
+}
+
+.botcheck {
+  display: none;
+}
+
+.contact-status {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.contact-status:empty {
+  display: none;
+}
+
+.contact-small {
+  margin: 0;
+  font-size: 0.8rem;
 }
